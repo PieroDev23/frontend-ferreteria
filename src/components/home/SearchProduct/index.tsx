@@ -7,7 +7,7 @@ const inputProps: InputProps = {
   border: 'unset',
   bgColor: 'white',
   width: '350px',
-  borderRadius: '15px',
+  borderRadius: 'unset',
   _placeholder: {
     color: 'black',
   },

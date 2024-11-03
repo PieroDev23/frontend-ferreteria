@@ -1,3 +1,4 @@
+import { MainFooter, MainHeader } from "@app/components/common";
 import { ThemeProvider } from "@app/providers/ThemeProvider";
 import type { Metadata } from "next";
 
@@ -13,9 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: 'whitesmoke' }}>
         <ThemeProvider>
+          <MainHeader />
           {children}
+          <MainFooter />
         </ThemeProvider>
       </body>
     </html>

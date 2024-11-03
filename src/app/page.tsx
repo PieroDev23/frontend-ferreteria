@@ -1,4 +1,5 @@
-import { MainHeader } from '@app/components/common';
+import { FrontBanner, ServicesSection } from '@app/components/home';
+import { ProductsSection } from '@app/components/home/Products';
 import React from 'react';
 
 
@@ -6,7 +7,9 @@ import React from 'react';
 export default function Home() {
   return (
     <React.Fragment>
-      <MainHeader />
+      <FrontBanner />
+      <ProductsSection />
+      <ServicesSection />
     </React.Fragment>
   );
 }
