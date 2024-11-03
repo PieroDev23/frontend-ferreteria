@@ -8,7 +8,6 @@ export class ClientProductsService {
       if (!response.ok) {
         return [];
       }
-
       const { products } = await response.json();
       return products;
     } catch (error) {
@@ -17,4 +16,7 @@ export class ClientProductsService {
     }
   }
 
+  static getProductsWithDiscount(products: Product[]) {
+    return products.filter((product) => Boolean(product.discount));
+  }
 }

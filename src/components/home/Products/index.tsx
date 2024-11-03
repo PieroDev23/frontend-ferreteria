@@ -1,35 +1,34 @@
 "use client";
 
-
-import { ProductCard } from '@app/components/common';
-import { ClientProductsService } from '@app/services';
-import { Product } from '@app/types';
-import { Box, Grid, GridItem, Heading } from '@chakra-ui/react';
-import React from 'react';
-
-
+import { MainGrid } from '@app/components/common/Grid';
+import { useHome } from '@app/hooks/useHome';
+import { Box, Heading } from '@chakra-ui/react';
 
 function ProductsSection() {
-  const [products, setProducts] = React.useState<Product[]>([]);
 
-  React.useEffect(() => {
-    ClientProductsService
-      .getProducts()
-      .then(res => {
-        setProducts(res);
-      });
-  }, []);
+  const { products, isLoading } = useHome();
 
   return (
-    <Box mt={'31px'} py={'31px'}>
+    <Box mt={'31px'} py={'31px'} px={'31px'}>
       <Heading textAlign={'center'} mb={'13px'}>Nuestros productos mas recientes</Heading>
-      <Grid maxW={'1400px'} margin={'auto'} py={'15px'} templateColumns={'repeat(5, 1fr)'} rowGap={5}>
-        {products.map((product) => (
-          <GridItem key={product.id}>
-            <ProductCard {...product} />
-          </GridItem>
-        ))}
-      </Grid>
+      <Box maxW={'1400px'} margin={'auto'}>
+        <MainGrid
+          gridProps={{
+            margin: 'auto',
+            mt: '31px',
+            py: '15px',
+            rowGap: 5,
+            columnGap: 5,
+            templateColumns: {
+              base: 'repeat(1, 1fr)',
+              md: 'repeat(3, 1fr)',
+              lg: 'repeat(4, 1fr)',
+              xl: 'repeat(5, 1fr)',
+            }
+          }}
+          isLoading={isLoading}
+          products={products} />
+      </Box>
     </Box >
   );
 }

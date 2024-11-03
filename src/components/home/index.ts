@@ -5,3 +5,4 @@ export * from './CartMenu';
 export * from './FrontBanner';
 export * from './Products'
 export * from './ServicesSection'
+export * from './ProductsDiscounts';

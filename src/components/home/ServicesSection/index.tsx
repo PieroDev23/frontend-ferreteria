@@ -43,7 +43,7 @@ function ServicesSection() {
   ];
 
   return (
-    <Box bgColor={'#feeb34'} py={'31px'}>
+    <Box bgColor={'#feeb34'} my={'31px'} py={'31px'} px={'31px'}>
       <Box as='section' mt='31px' maxW={'1400px'} margin={'auto'}>
         <Heading textAlign='center' mb='31px'>Nuestros servicios</Heading>
         <Flex wrap="wrap" justifyContent="center" gap="31px" mt="31px">

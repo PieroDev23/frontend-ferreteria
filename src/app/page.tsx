@@ -1,15 +1,15 @@
-import { FrontBanner, ServicesSection } from '@app/components/home';
+import { FrontBanner, ProductsWithDiscountSection, ServicesSection } from '@app/components/home';
 import { ProductsSection } from '@app/components/home/Products';
+import { HomeProvider } from '@app/providers/HomeProvider';
 import React from 'react';
-
-
 
 export default function Home() {
   return (
-    <React.Fragment>
+    <HomeProvider>
       <FrontBanner />
       <ProductsSection />
       <ServicesSection />
-    </React.Fragment>
+      <ProductsWithDiscountSection />
+    </HomeProvider>
   );
 }

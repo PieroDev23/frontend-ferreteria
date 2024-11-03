@@ -16,7 +16,7 @@ function FrontBanner() {
       <Box bgColor="black" position="absolute" width={'100%'} height={'100%'} opacity={'.45'}></Box>
       <Flex position="relative" zIndex={1} justifyContent={'center'} alignItems={'center'} flexDir={'column'} gap={'31px'}>
         <Box>
-          <Heading mb={'13px'} color={'white'}>Ferretería para el <Text as='span' color={'black'}>hogar</Text> y para  <Text as='span' color={'black'}>empresas constructoras</Text></Heading>
+          <Heading textAlign={'center'} mb={'13px'} color={'white'}>Ferretería para el <Text as='span' color={'black'}>hogar</Text> y para  <Text as='span' color={'black'}>empresas constructoras</Text></Heading>
           <Text color={'white'} textAlign={'center'} margin={0} fontWeight={'300'} fontSize={'20px'}>Bienvenido a nuestra tienda virtual de ferreteria, para el hogar y empresas dedicadas a la construcción</Text>
         </Box>
         <Flex gap={'13px'}>
