@@ -20,6 +20,7 @@ export type StoreContextValue = {
 export const StoreContext = React.createContext({} as StoreContextValue);
 
 export function StoreProvider({ children }: PropsWithChildren) {
+
   const [isLoading, setIsLoading] = React.useState(true);
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [products, setProducts] = React.useState<Product[]>([]);
@@ -33,27 +34,27 @@ export function StoreProvider({ children }: PropsWithChildren) {
       .then(res => {
         setProducts(res);
         setProductsWithDiscount(ClientProductsService.getProductsWithDiscount(res));
-      });
-  }, []);
+        setIsLoading(false);
+      }).catch(() => setIsLoading(false));
 
-  React.useEffect(() => {
     ClientProductsService.getProductsCategories()
       .then(res => {
         setCategories(res);
-        setIsLoading(false)
-      }).catch(() => setIsLoading(false))
+      }).catch(() => setIsLoading(false));
   }, []);
 
   React.useEffect(() => {
+    const filterProductByCategory = () => products.filter(c => c.categoryId === category?.id);
+
     if (category) {
-      const productsCategory = products.filter(c => c.categoryId === category?.id);
+      const productsCategory = filterProductByCategory()
       setProductsCat(productsCategory);
     }
-  }, [category])
+
+  }, [category, products]);
 
   const onSetCategory = (id: string) => {
     const category = categories.find(c => c.id === id);
-    console.log({ category });
     setCategory(category || null);
   }
 

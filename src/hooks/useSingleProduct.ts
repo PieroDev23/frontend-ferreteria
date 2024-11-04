@@ -4,5 +4,5 @@ import React from "react";
 
 
 export function useSingleProduct() {
-  return React.createContext(SingleProductContext);
+  return React.useContext(SingleProductContext);
 }

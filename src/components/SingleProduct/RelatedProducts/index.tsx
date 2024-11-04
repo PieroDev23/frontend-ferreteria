@@ -1,13 +1,14 @@
+"use client";
+
 import { MainGrid } from '@app/components/common/Grid';
+import { useStore } from '@app/hooks/useStore';
 import { Box, Heading } from '@chakra-ui/react';
 import React from 'react';
 
-type FeaturedProductsProps = {
-  someVar?: boolean;
-  someFn?: (param: boolean) => void;
-};
 
-function FeaturedProducts(props: FeaturedProductsProps) {
+
+function RelatedProducts() {
+  const { productsCat, isLoading, productId } = useStore();
   return (
     <Box mt={'31px'}>
       <Heading textAlign={'center'} mb={'31px'}>Productos recomendados</Heading>
@@ -22,10 +23,10 @@ function FeaturedProducts(props: FeaturedProductsProps) {
           xl: 'repeat(5, 1fr)',
         }
       }}
-        isLoading={true}
-        products={[]} />
+        isLoading={isLoading}
+        products={productsCat.filter(p => p.id !== productId)} />
     </Box>
   );
 }
 
-export { FeaturedProducts };
+export { RelatedProducts };

@@ -12,7 +12,7 @@ import { useStore } from '@app/hooks/useStore';
 
 function ProductCard({ image, name, description, totalPrice, categoryId, id, price, discount }: Product) {
   const hasDiscount = Boolean(discount);
-  const {} = useStore();
+  const { onSetProductId, onSetCategory } = useStore();
   return (
     <Card maxW='100%' position={'relative'}>
       {
@@ -26,6 +26,8 @@ function ProductCard({ image, name, description, totalPrice, categoryId, id, pri
         <Image
           src={image}
           alt={name}
+          width={'auto'}
+          height={'auto'}
           margin={'auto'}
           borderRadius='lg'
         />
@@ -40,8 +42,8 @@ function ProductCard({ image, name, description, totalPrice, categoryId, id, pri
         <Flex justifyContent={'space-between'} alignItems={'center'} w={'100%'} >
           <Text color={'black'} fontSize='13px' >
             Precio: {" "}
-            <Text as='span' textDecor={hasDiscount ? 'line-through' : ''}>S/. {Math.floor(price)}</Text>
-            <Text as='span' fontWeight={!hasDiscount ? '' : 'bold'}>{hasDiscount && `- S/. ${Math.floor(totalPrice)}`}</Text>
+            <Text as='span' textDecor={hasDiscount ? 'line-through' : ''}>S/. {price.toFixed(2)}</Text>
+            <Text as='span' fontWeight={!hasDiscount ? '' : 'bold'}>{hasDiscount && `- S/. ${totalPrice.toFixed(2)}`}</Text>
           </Text>
         </Flex>
         <Stack spacing={'16px'} mt={'31px'}>
@@ -49,6 +51,10 @@ function ProductCard({ image, name, description, totalPrice, categoryId, id, pri
             Agregar al carrito
           </Button>
           <Button borderRadius={0}
+            onClick={() => {
+              onSetProductId(id)
+              onSetCategory(categoryId);
+            }}
             variant={'outline'}
             as={Link}
             href={`tienda/category/${categoryId}/product/${id}`}

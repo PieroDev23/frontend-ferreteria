@@ -1,17 +1,17 @@
-import { FeaturedProducts, ProductDetail } from "@app/components/single-product";
+import { RelatedProducts, ProductDetail } from "@app/components/SingleProduct";
+import { SingleProductProvider } from "@app/providers/SingleProductProvider";
 import { Box } from "@chakra-ui/react";
 
+export default function SingleProductPage({ params }: { params: { productId: string } }) {
 
-
-
-
-export default function SingleProductPage() {
   return (
-    <Box bgColor={'white'} maxW={'1600px'} margin={'auto'} p={'31px'} my={'31px'}>
-      <Box>
-        <ProductDetail />
-        <FeaturedProducts />
+    <SingleProductProvider productId={params.productId}>
+      <Box bgColor={'white'} maxW={'1600px'} margin={'auto'} p={'31px'} my={'31px'}>
+        <Box>
+          <ProductDetail />
+          <RelatedProducts />
+        </Box>
       </Box>
-    </Box>
+    </SingleProductProvider>
   )
 }

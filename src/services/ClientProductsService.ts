@@ -27,8 +27,8 @@ export class ClientProductsService {
     return categories;
   }
 
-  static async getProductById(idProduct: string) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${idProduct}`);
+  static async getProductById(idProduct: string): Promise<Product | null> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${idProduct}`);
 
     if (!response.ok) {
       return null;
