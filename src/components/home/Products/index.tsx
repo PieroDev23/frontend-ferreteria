@@ -1,12 +1,12 @@
 "use client";
 
 import { MainGrid } from '@app/components/common/Grid';
-import { useHome } from '@app/hooks/useHome';
+import { useStore } from '@app/hooks/useStore';
 import { Box, Heading } from '@chakra-ui/react';
 
 function ProductsSection() {
 
-  const { products, isLoading } = useHome();
+  const { products, isLoading } = useStore();
 
   return (
     <Box mt={'31px'} py={'31px'} px={'31px'}>
@@ -27,7 +27,7 @@ function ProductsSection() {
             }
           }}
           isLoading={isLoading}
-          products={products} />
+          products={products.slice(0, 15)} />
       </Box>
     </Box >
   );

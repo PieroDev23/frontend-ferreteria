@@ -5,13 +5,14 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Box, Button, Card, CardBody, CardFooter, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { CartIcon } from '../Icons';
+import { useStore } from '@app/hooks/useStore';
 
 
 
 
-function ProductCard({ image, name, description, totalPrice, category, id, price, discount }: Product) {
+function ProductCard({ image, name, description, totalPrice, categoryId, id, price, discount }: Product) {
   const hasDiscount = Boolean(discount);
-
+  const {} = useStore();
   return (
     <Card maxW='100%' position={'relative'}>
       {
@@ -44,10 +45,18 @@ function ProductCard({ image, name, description, totalPrice, category, id, price
           </Text>
         </Flex>
         <Stack spacing={'16px'} mt={'31px'}>
-          <Button borderRadius={0} color={'white'} bgColor={'black'} fontSize={'13px'} height={'fit-content'} py={'8px'} rightIcon={<CartIcon />} _hover={{ bgColor: '#feeb34', color: 'black' }}>
+          <Button borderRadius={0} color={'white'} bgColor={'black'} fontSize={'13px'} height={'32px'} py={'8px'} rightIcon={<CartIcon />} _hover={{ bgColor: '#feeb34', color: 'black' }}>
             Agregar al carrito
           </Button>
-          <Button borderRadius={0} variant={'outline'} as={Link} href={`${category}/product/${id}`} fontSize={'13px'} height={'fit-content'} py={'8px'} rightIcon={<ArrowForwardIcon />} borderColor={'black'}>
+          <Button borderRadius={0}
+            variant={'outline'}
+            as={Link}
+            href={`tienda/category/${categoryId}/product/${id}`}
+            fontSize={'13px'}
+            height={'32px'}
+            py={'8px'}
+            rightIcon={<ArrowForwardIcon />}
+            borderColor={'black'}>
             Ver producto
           </Button>
         </Stack>

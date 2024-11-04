@@ -1,7 +1,7 @@
 "use client";
 
 import { MainGrid } from '@app/components/common/Grid';
-import { useHome } from '@app/hooks/useHome';
+import { useStore } from '@app/hooks/useStore';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 
@@ -9,7 +9,7 @@ import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 
 function ProductsWithDiscountSection() {
 
-  const { productsWithDiscount, isLoading } = useHome();
+  const { productsWithDiscount, isLoading } = useStore();
 
   return (
     <Box my={'31px'} py={'31px'} px={'31px'}>
@@ -30,7 +30,7 @@ function ProductsWithDiscountSection() {
             }
           }}
           isLoading={isLoading}
-          products={productsWithDiscount} />
+          products={productsWithDiscount.slice(0, 15)} />
       </Box>
       <Flex justifyContent={'center'} mt={'31px'}>
         <Button borderRadius={'unset'} rightIcon={<ArrowForwardIcon />} bgColor={'#feeb34'}>

@@ -1,4 +1,4 @@
-import { Product } from "@app/types";
+import { Category, Product } from "@app/types";
 
 export class ClientProductsService {
 
@@ -14,6 +14,28 @@ export class ClientProductsService {
       console.log(error);
       return [];
     }
+  }
+
+  static async getProductsCategories(): Promise<Category[]> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`);
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const { categories } = await response.json();
+    return categories;
+  }
+
+  static async getProductById(idProduct: string) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${idProduct}`);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const { product } = await response.json();
+    return product;
   }
 
   static getProductsWithDiscount(products: Product[]) {
