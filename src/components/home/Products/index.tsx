@@ -5,9 +5,7 @@ import { useStore } from '@app/hooks/useStore';
 import { Box, Heading } from '@chakra-ui/react';
 
 function ProductsSection() {
-
   const { products, isLoading } = useStore();
-
   return (
     <Box mt={'31px'} py={'31px'} px={'31px'}>
       <Heading textAlign={'center'} mb={'13px'}>Nuestros productos mas recientes</Heading>

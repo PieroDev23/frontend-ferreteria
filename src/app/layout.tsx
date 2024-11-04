@@ -17,13 +17,13 @@ export default function RootLayout({
     <html lang="en">
       <body style={{ backgroundColor: 'whitesmoke', color: 'black' }}>
         <ThemeProvider>
-          <StoreProvider>
-            <div style={{ display: 'grid', minHeight: '100dvh', gridTemplateRows: 'auto 1fr auto' }}>
+          <div style={{ display: 'grid', minHeight: '100dvh', gridTemplateRows: 'auto 1fr auto' }}>
+            <StoreProvider>
               <MainHeader />
               {children}
               <MainFooter />
-            </div>
-          </StoreProvider>
+            </StoreProvider>
+          </div>
         </ThemeProvider>
       </body>
     </html>

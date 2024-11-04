@@ -37,7 +37,6 @@ export function StoreProvider({ children }: PropsWithChildren) {
   }, []);
 
   React.useEffect(() => {
-    setIsLoading(true);
     ClientProductsService.getProductsCategories()
       .then(res => {
         setCategories(res);
