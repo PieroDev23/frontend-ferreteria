@@ -34,7 +34,7 @@ function ProductCardPlaceholder() {
               Agregar al carrito
             </Button>
           </Skeleton>
-          <Skeleton>
+          <Skeleton maxH={'32px'}>
             <Button borderRadius={0}>
               Ver producto
             </Button>

@@ -1,4 +1,5 @@
 import { MainFooter, MainHeader } from "@app/components/common";
+import { StoreProvider } from "@app/providers/StoreProvider";
 import { ThemeProvider } from "@app/providers/ThemeProvider";
 import type { Metadata } from "next";
 
@@ -14,11 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: 'whitesmoke' }}>
+      <body style={{ backgroundColor: 'whitesmoke', color: 'black' }}>
         <ThemeProvider>
-          <MainHeader />
-          {children}
-          <MainFooter />
+          <div style={{ display: 'grid', minHeight: '100dvh', gridTemplateRows: 'auto 1fr auto' }}>
+            <StoreProvider>
+              <MainHeader />
+              {children}
+              <MainFooter />
+            </StoreProvider>
+          </div>
         </ThemeProvider>
       </body>
     </html>

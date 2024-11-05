@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Link, Text } from "@chakra-ui/react";
 
 function FrontBanner() {
   return (
@@ -20,8 +20,8 @@ function FrontBanner() {
           <Text color={'white'} textAlign={'center'} margin={0} fontWeight={'300'} fontSize={'20px'}>Bienvenido a nuestra tienda virtual de ferreteria, para el hogar y empresas dedicadas a la construcción</Text>
         </Box>
         <Flex gap={'13px'}>
-          <Button bgColor={'black'} color={'white'} borderRadius={'unset'} textTransform={'uppercase'} _hover={{ bgColor: '#feeb34', color: 'black' }}>Ver Tienda</Button>
-          <Button textTransform={'uppercase'} bgColor={'white'} borderRadius={'unset'}>Ver Servicios</Button>
+          <Button as={Link} href="/tienda" bgColor={'black'} color={'white'} borderRadius={'unset'} textTransform={'uppercase'} _hover={{ bgColor: '#feeb34', color: 'black' }}>Ver Tienda</Button>
+          <Button as={Link} href="/servicios" textTransform={'uppercase'} bgColor={'white'} borderRadius={'unset'}>Ver Servicios</Button>
         </Flex>
       </Flex>
     </Box>
