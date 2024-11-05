@@ -3,7 +3,7 @@
 import { MainGrid } from '@app/components/common/Grid';
 import { useStore } from '@app/hooks/useStore';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Link } from '@chakra-ui/react';
 
 
 
@@ -33,7 +33,7 @@ function ProductsWithDiscountSection() {
           products={productsWithDiscount.slice(0, 15)} />
       </Box>
       <Flex justifyContent={'center'} mt={'31px'}>
-        <Button borderRadius={'unset'} rightIcon={<ArrowForwardIcon />} bgColor={'#feeb34'}>
+        <Button href='/tienda' borderRadius={'unset'} rightIcon={<ArrowForwardIcon />} bgColor={'#feeb34'} as={Link}>
           Explora nuestra tienda
         </Button>
       </Flex>

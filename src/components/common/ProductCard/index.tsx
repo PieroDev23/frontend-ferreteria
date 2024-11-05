@@ -10,9 +10,11 @@ import { useStore } from '@app/hooks/useStore';
 
 
 
-function ProductCard({ image, name, description, totalPrice, categoryId, id, price, discount }: Product) {
+function ProductCard(props: Product) {
+  const { image, name, description, totalPrice, categoryId, id, price, discount } = props;
+
   const hasDiscount = Boolean(discount);
-  const { onSetProductId, onSetCategory } = useStore();
+  const { onSetProductId, onSetCategory, onAddToCart } = useStore();
   return (
     <Card maxW='100%' position={'relative'}>
       {
@@ -47,7 +49,18 @@ function ProductCard({ image, name, description, totalPrice, categoryId, id, pri
           </Text>
         </Flex>
         <Stack spacing={'16px'} mt={'31px'}>
-          <Button borderRadius={0} color={'white'} bgColor={'black'} fontSize={'13px'} height={'32px'} py={'8px'} rightIcon={<CartIcon />} _hover={{ bgColor: '#feeb34', color: 'black' }}>
+          <Button
+            onClick={() => {
+              onAddToCart({ ...props, quantity: 1 });
+            }}
+            borderRadius={0}
+            color={'white'}
+            bgColor={'black'}
+            fontSize={'13px'}
+            height={'32px'}
+            py={'8px'}
+            rightIcon={<CartIcon />}
+            _hover={{ bgColor: '#feeb34', color: 'black' }}>
             Agregar al carrito
           </Button>
           <Button borderRadius={0}
@@ -57,7 +70,7 @@ function ProductCard({ image, name, description, totalPrice, categoryId, id, pri
             }}
             variant={'outline'}
             as={Link}
-            href={`tienda/category/${categoryId}/product/${id}`}
+            href={`/tienda/category/${categoryId}/product/${id}`}
             fontSize={'13px'}
             height={'32px'}
             py={'8px'}

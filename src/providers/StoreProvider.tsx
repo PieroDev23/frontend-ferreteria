@@ -12,9 +12,11 @@ export type StoreContextValue = {
   products: Product[];
   productsWithDiscount: Product[];
   productsCat: Product[];
+  cart: Product[];
   productId: string;
   onSetCategory: (id: string) => void;
   onSetProductId: (id: string) => void;
+  onAddToCart: (product: Product) => void;
 }
 
 export const StoreContext = React.createContext({} as StoreContextValue);
@@ -28,6 +30,7 @@ export function StoreProvider({ children }: PropsWithChildren) {
   const [productsCat, setProductsCat] = React.useState<Product[]>([]);
   const [category, setCategory] = React.useState<Category | null>(null);
   const [productId, setProductId] = React.useState('');
+  const [cart, setCart] = React.useState<Product[]>([]);
 
   React.useEffect(() => {
     ClientProductsService.getProducts()
@@ -60,8 +63,31 @@ export function StoreProvider({ children }: PropsWithChildren) {
 
   const onSetProductId = (id: string) => setProductId(id);
 
+  const onAddToCart = (product: Product) => {
+    const productRepeatedFinded = cart.find(p => p.id === product.id);
+
+    if (productRepeatedFinded) {
+      setCart(cart.map(p => p.id === productRepeatedFinded.id ? { ...p, quantity: p.quantity + product.quantity } : p));
+      return;
+    }
+
+    setCart(prev => [...prev, product]);
+  }
+
   return (
-    <StoreContext.Provider value={{ productsWithDiscount, isLoading, categories, products, category, productsCat, productId, onSetCategory, onSetProductId }}>
+    <StoreContext.Provider value={{
+      productsWithDiscount,
+      isLoading,
+      categories,
+      products,
+      category,
+      productsCat,
+      productId,
+      cart,
+      onSetCategory,
+      onSetProductId,
+      onAddToCart
+    }}>
       {children}
     </StoreContext.Provider>
   )

@@ -10,7 +10,7 @@ function ProductDetailSkeleton() {
   return (
     <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }} gap={'31px'}>
       <GridItem>
-        <Skeleton minW={'100%'} minH={'100%'}>
+        <Skeleton minW={'100%'} minH={{ base: '343px', md: '653px' }}>
           <Image src={""} alt="placeholderimage" w={'100%'} />
         </Skeleton>
       </GridItem>

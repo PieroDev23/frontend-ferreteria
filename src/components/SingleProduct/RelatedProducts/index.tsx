@@ -1,16 +1,15 @@
 "use client";
 
 import { MainGrid } from '@app/components/common/Grid';
-import { useStore } from '@app/hooks/useStore';
+import { useSingleProduct } from '@app/hooks/useSingleProduct';
 import { Box, Heading } from '@chakra-ui/react';
-import React from 'react';
 
 
 
 function RelatedProducts() {
-  const { productsCat, isLoading, productId } = useStore();
+  const { isLoading, relatedProducts } = useSingleProduct();
   return (
-    <Box mt={'31px'}>
+    <Box mt={'62px'}>
       <Heading textAlign={'center'} mb={'31px'}>Productos recomendados</Heading>
       <MainGrid gridProps={{
         margin: 'auto',
@@ -24,7 +23,7 @@ function RelatedProducts() {
         }
       }}
         isLoading={isLoading}
-        products={productsCat.filter(p => p.id !== productId)} />
+        products={relatedProducts} />
     </Box>
   );
 }

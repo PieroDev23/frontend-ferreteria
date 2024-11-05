@@ -6,7 +6,7 @@ export default function SingleProductPage({ params }: { params: { productId: str
 
   return (
     <SingleProductProvider productId={params.productId}>
-      <Box bgColor={'white'} maxW={'1600px'} margin={'auto'} p={'31px'} my={'31px'}>
+      <Box bgColor={'white'} maxW={'1400px'} margin={'auto'} p={'31px'} my={'31px'}>
         <Box>
           <ProductDetail />
           <RelatedProducts />
