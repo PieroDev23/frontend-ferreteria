@@ -10,6 +10,7 @@ export interface Product {
   inventoryId: string;
   discountId: string | null;
   quantity: number;
+  stock: number;
   discount: number;
   totalPrice: number;
 }
