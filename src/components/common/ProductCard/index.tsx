@@ -51,7 +51,7 @@ function ProductCard(props: Product) {
         <Stack spacing={'16px'} mt={'31px'}>
           <Button
             onClick={() => {
-              onAddToCart({ ...props, quantity: 1 });
+              onAddToCart({ ...props, quantity: props.quantity + 1 });
             }}
             borderRadius={0}
             color={'white'}
