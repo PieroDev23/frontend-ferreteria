@@ -8,6 +8,7 @@ import {
   Card,
   Flex,
   Heading,
+  Spinner,
   Stack,
   Text
 } from '@chakra-ui/react';
@@ -16,13 +17,20 @@ import React from 'react';
 import { CartTable } from '../CartTable';
 
 export function CartView() {
-  const { cartQuantity, cart } = useStore();
+  const { cartQuantity, cart, isLoading } = useStore();
 
   const cartIsEmpty = cart.length === 0;
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
+  if (isLoading) {
+    return <Card bgColor={'white'} p={8} w={'100%'} minH={'500px'} display={'flex'} align={'center'} justify={'center'}>
+      <Spinner />
+    </Card>;
+  }
+
   return (
     <Card bgColor={'white'} p={8} w={'100%'} minH={'500px'}>
+
       {
         !cartIsEmpty && (
           <React.Fragment>
