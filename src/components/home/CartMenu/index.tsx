@@ -10,7 +10,7 @@ function CartMenu() {
   const { cartQuantity } = useStore();
   return (
     <Flex gap={'13px'}>
-      <Link as={NextLink} href={'/login'}>
+      <Link as={NextLink} href={'/cuenta'}>
         <PersonIcon />
       </Link>
       <Link as={NextLink} href={'/carrito'} position={'relative'}>

@@ -8,7 +8,7 @@ import { Box, Card, Flex, Heading } from "@chakra-ui/react";
 export default function CheckoutPage() {
   return (
     <Box py={10}>
-      <Card maxW={'1400px'} minW={'1400px'} mx={'auto'} p={8}>
+      <Card maxW={'1400px'} minW={'1400px'} mx={'auto'} p={8} bg={'white'}>
         <Heading mb={21}>Checkout</Heading>
         <Flex gap={31}>
           <CheckoutForm w={'75%'} />

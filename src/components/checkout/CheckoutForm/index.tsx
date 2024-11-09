@@ -56,7 +56,7 @@ export function CheckoutForm(props: StackProps) {
           <Input
             type="text"
             {...inputProps}
-            placeholder="Ingresa tus nombres..."
+            placeholder="Ingresa tus nombres"
             {...register("firstName", { required: "El nombre es requerido" })}
           />
           <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
@@ -66,7 +66,7 @@ export function CheckoutForm(props: StackProps) {
           <Input
             type="text"
             {...inputProps}
-            placeholder="Ingresa tus apellidos..."
+            placeholder="Ingresa tus apellidos"
             {...register("lastName", { required: "El apellido es requerido" })}
           />
           <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
@@ -78,7 +78,7 @@ export function CheckoutForm(props: StackProps) {
         <Input
           type="email"
           {...inputProps}
-          placeholder="Ingresa tu email..."
+          placeholder="Ingresa tu email"
           {...register("email", {
             required: "El email es requerido",
             pattern: {
@@ -111,7 +111,7 @@ export function CheckoutForm(props: StackProps) {
         <FormLabel>Dirección</FormLabel>
         <Input
           {...inputProps}
-          placeholder="Ingresa tu dirección..."
+          placeholder="Ingresa tu dirección"
           {...register("address", { required: "La dirección es requerida" })}
         />
         <FormErrorMessage>{errors.address?.message}</FormErrorMessage>
