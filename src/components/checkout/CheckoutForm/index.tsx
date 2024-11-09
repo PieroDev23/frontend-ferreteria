@@ -29,6 +29,9 @@ type CheckoutFormData = {
   phone: string;
   address: string;
   idDocument: string;
+  cardNumber: string;
+  cardExpiry: string;
+  cardCvv: string;
 };
 
 // CheckoutForm component
@@ -88,7 +91,7 @@ export function CheckoutForm(props: StackProps) {
       </FormControl>
 
       <FormControl isInvalid={!!errors.phone}>
-        <FormLabel>Phone</FormLabel>
+        <FormLabel>Teléfono</FormLabel>
         <Input
           type="tel"
           {...inputProps}
@@ -97,7 +100,7 @@ export function CheckoutForm(props: StackProps) {
             required: "El número de teléfono es requerido",
             pattern: {
               value: /^\d+$/,
-              message: "El número de telefono es inválido",
+              message: "El número de teléfono es inválido",
             },
           })}
         />
@@ -132,19 +135,73 @@ export function CheckoutForm(props: StackProps) {
       </FormControl>
 
       <FormControl>
-        <FormLabel>País o Región (más países pronto)</FormLabel>
-        <Input {...inputProps} placeholder="Peru" readOnly />
+        <FormLabel>País o Región</FormLabel>
+        <Input {...inputProps} placeholder="Perú" readOnly />
       </FormControl>
 
       <FormControl>
         <FormLabel>Provincia</FormLabel>
-        <Select
-          defaultValue="LIMA"
-          borderColor="gray"
-        >
+        <Select defaultValue="LIMA" borderColor="gray" borderRadius="unset">
           <option value="LIMA">Lima</option>
         </Select>
       </FormControl>
+
+      {/* Campos de tarjeta de crédito */}
+      <FormControl isInvalid={!!errors.cardNumber}>
+        <FormLabel>Número de Tarjeta</FormLabel>
+        <Input
+          type="text"
+          maxLength={16}
+          {...inputProps}
+          placeholder="Ingresa tu número de tarjeta"
+          {...register("cardNumber", {
+            required: "El número de tarjeta es requerido",
+            pattern: {
+              value: /^\d{16}$/,
+              message: "El número de tarjeta es inválido",
+            },
+          })}
+        />
+        <FormErrorMessage>{errors.cardNumber?.message}</FormErrorMessage>
+      </FormControl>
+
+      <Flex gap={5}>
+        <FormControl isInvalid={!!errors.cardExpiry}>
+          <FormLabel>Fecha de Vencimiento</FormLabel>
+          <Input
+            type="text"
+            maxLength={5}
+            {...inputProps}
+            placeholder="MM/YY"
+            {...register("cardExpiry", {
+              required: "La fecha de vencimiento es requerida",
+              pattern: {
+                value: /^(0[1-9]|1[0-2])\/\d{2}$/,
+                message: "Formato inválido, usa MM/YY",
+              },
+            })}
+          />
+          <FormErrorMessage>{errors.cardExpiry?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.cardCvv}>
+          <FormLabel>CVV</FormLabel>
+          <Input
+            type="password"
+            maxLength={3}
+            {...inputProps}
+            placeholder="CVV"
+            {...register("cardCvv", {
+              required: "El CVV es requerido",
+              pattern: {
+                value: /^\d{3}$/,
+                message: "El CVV es inválido",
+              },
+            })}
+          />
+          <FormErrorMessage>{errors.cardCvv?.message}</FormErrorMessage>
+        </FormControl>
+      </Flex>
 
       <Flex justify="flex-end" mt={5}>
         <Button

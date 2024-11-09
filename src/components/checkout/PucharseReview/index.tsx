@@ -52,13 +52,9 @@ export function PucharseReview(props: StackProps) {
                   </Text>
                 </Flex>
 
-             
-                <Flex align={'center'} justify={'space-between'} mt={31}>
-                  <Image width={50} height={50} src={'https://yanoescoleccionable.com/wp-content/plugins/culqi-checkout/includes/3rd-party/plugins/woocommerce/assets/images/culqi-logo.svg'} alt="culqi" />
-                  <Flex justify={'center'} align={'center'} gap={5}>
-                    <Image width={100} height={50} src={'https://yanoescoleccionable.com/wp-content/plugins/culqi-checkout/includes/3rd-party/plugins/woocommerce/assets/images/cards.svg'} alt="providers" />
-                    <Image width={30} height={30} src={"https://yanoescoleccionable.com/wp-content/plugins/culqi-checkout/includes/3rd-party/plugins/woocommerce/assets/images/yape.svg"} alt="yape" />
-                  </Flex>
+
+                <Flex justify={'flex-end'}  gap={5}>
+                  <Image width={100} height={50} src={'https://yanoescoleccionable.com/wp-content/plugins/culqi-checkout/includes/3rd-party/plugins/woocommerce/assets/images/cards.svg'} alt="providers" />
                 </Flex>
               </Stack>
 
