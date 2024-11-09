@@ -10,8 +10,8 @@ function MainNavMenu() {
     <Flex gap={'31px'} fontWeight={'600'} >
       <Link href={'/'}>Inicio</Link>
       <Link href={'/tienda'}>Tienda</Link>
-      <Link href={'/categorias'}>Categorias</Link>
-      <Link href={'/servicios'}>Servicios</Link>
+      {/* <Link href={'/categorias'}>Categorias</Link>
+      <Link href={'/servicios'}>Servicios</Link> */}
     </Flex>
   );
 }

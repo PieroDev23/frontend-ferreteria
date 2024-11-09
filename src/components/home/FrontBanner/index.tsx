@@ -21,7 +21,7 @@ function FrontBanner() {
         </Box>
         <Flex gap={'13px'}>
           <Button as={Link} href="/tienda" bgColor={'black'} color={'white'} borderRadius={'unset'} textTransform={'uppercase'} _hover={{ bgColor: '#feeb34', color: 'black' }}>Ver Tienda</Button>
-          <Button as={Link} href="/servicios" textTransform={'uppercase'} bgColor={'white'} borderRadius={'unset'}>Ver Servicios</Button>
+          {/* <Button as={Link} href="/servicios" textTransform={'uppercase'} bgColor={'white'} borderRadius={'unset'}>Ver Servicios</Button> */}
         </Flex>
       </Flex>
     </Box>

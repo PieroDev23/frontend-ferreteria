@@ -3,7 +3,7 @@
 import { MainGrid } from "@app/components/common/Grid";
 import { useStore } from "@app/hooks/useStore";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 

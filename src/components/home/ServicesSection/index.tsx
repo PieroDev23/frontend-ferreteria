@@ -1,10 +1,9 @@
 "use client";
 
-import { Box, Button, Flex, Heading, Link } from '@chakra-ui/react';
-import { ServiceCard } from '../ServiceCard';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { HammerIcon, PaintIcon, ToolIcon, WoodIcon } from '@app/components/common';
 import { ElectricityIcon } from '@app/components/common/Icons/ElectricityIcon';
+import { Box, Flex, Heading } from '@chakra-ui/react';
+import { ServiceCard } from '../ServiceCard';
 
 
 
@@ -52,9 +51,9 @@ function ServicesSection() {
           ))}
         </Flex>
         <Flex justifyContent={'center'} mt={'31px'}>
-          <Button as={Link} href='/servicios' rightIcon={<ArrowForwardIcon />} borderRadius={'unset'} bgColor={'black'} color={'white'} _hover={{ bgColor: 'black', color: 'white', textDecor: 'none' }}>
+          {/* <Button as={Link} href='/servicios' rightIcon={<ArrowForwardIcon />} borderRadius={'unset'} bgColor={'black'} color={'white'} _hover={{ bgColor: 'black', color: 'white', textDecor: 'none' }}>
             Explorar servicios
-          </Button>
+          </Button> */}
         </Flex>
       </Box>
     </Box>
@@ -62,3 +61,4 @@ function ServicesSection() {
 }
 
 export { ServicesSection };
+
