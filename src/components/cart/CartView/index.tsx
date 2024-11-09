@@ -50,10 +50,10 @@ export function CartView() {
                     <Text>Total: S/. {subtotal.toFixed(2)}</Text>
                   </Stack>
                   <Flex flexDir={'column'} gap={5} mt={'31px'}>
-                    <Button w={'100%'} borderRadius={'unset'} bgColor={'#feeb34'} color={'black'} _hover={{ bgColor: '#feeb34', color: 'black' }}>
+                    <Button w={'100%'} as={Link} href={'/checkout'} borderRadius={'unset'} bgColor={'#feeb34'} color={'black'} _hover={{ bgColor: '#feeb34', color: 'black' }}>
                       Continuar a pagar
                     </Button>
-                    <Button w={'100%'} borderColor={'black'} variant={'outline'} borderRadius={'unset'} color={'black'} _hover={{ bgColor: 'black', color: 'white' }}>
+                    <Button w={'100%'} as={Link} href={'/tienda'} borderColor={'black'} variant={'outline'} borderRadius={'unset'} color={'black'} _hover={{ bgColor: 'black', color: 'white' }}>
                       Seguir comprando
                     </Button>
                   </Flex>

@@ -76,6 +76,7 @@ export function StoreProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     setCartQuantity(cart.reduce((prev, current) => prev + current.quantity, 0));
+    setCartQuantity(cart.reduce((prev, current) => prev + current.quantity, 0));
   }, [cart]);
 
   const onSetCategory = (id: string) => {
