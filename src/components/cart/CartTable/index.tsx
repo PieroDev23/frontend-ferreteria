@@ -65,7 +65,7 @@ export function CartTable() {
                   }}>-</Button>
                 </HStack>
               </Td>
-              <Td>S/. {item.price.toFixed(2)}</Td>
+              <Td>S/. {item.totalPrice.toFixed(2)}</Td>
               <Td>
                 <Button onClick={() => onDeleteCart(item)} bg={'black'} borderRadius={'unset'} color={'white'} _hover={{ bg: 'black' }}>
                   Eliminar

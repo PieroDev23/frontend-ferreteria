@@ -20,7 +20,7 @@ export function CartView() {
   const { cartQuantity, cart, isLoading } = useStore();
 
   const cartIsEmpty = cart.length === 0;
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalCart = cart.reduce((prev, curr) => prev + curr.totalPrice, 0).toFixed(2)
 
   if (isLoading) {
     return <Card bgColor={'white'} p={8} w={'100%'} minH={'500px'} display={'flex'} align={'center'} justify={'center'}>
@@ -44,10 +44,10 @@ export function CartView() {
               <Box flexBasis={'30%'}>
                 <Stack spacing={2} h={'100%'}>
                   <Stack spacing={5}>
-                    <Heading size={'md'}>Subtotal: S/. {subtotal.toFixed(2)}</Heading>
+                    <Heading size={'md'}>Total del carrito: S/. {totalCart}</Heading>
                     <Text>Cantidad de productos: {cartQuantity}</Text>
                     <Text>Descuento: SIN DESCUENTO</Text>
-                    <Text>Total: S/. {subtotal.toFixed(2)}</Text>
+                    <Text>Total: S/. {totalCart}</Text>
                   </Stack>
                   <Flex flexDir={'column'} gap={5} mt={'31px'}>
                     <Button w={'100%'} as={Link} href={'/checkout'} borderRadius={'unset'} bgColor={'#feeb34'} color={'black'} _hover={{ bgColor: '#feeb34', color: 'black' }}>

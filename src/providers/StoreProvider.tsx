@@ -2,6 +2,7 @@
 
 import { ClientProductsService } from "@app/services";
 import { Category, Product } from "@app/types";
+import { useToast } from "@chakra-ui/react";
 import React, { PropsWithChildren, useEffect } from "react";
 
 export type StoreContextValue = {
@@ -15,6 +16,7 @@ export type StoreContextValue = {
   cartQuantity: number;
   productId: string;
   onSetCategory: (id: string) => void;
+  onResetCart: () => void;
   onSetProductId: (id: string) => void;
   onAddToCart: (product: Product) => void;
   onDeleteCart: (product: Product) => void;
@@ -30,6 +32,7 @@ export function StoreProvider({ children }: PropsWithChildren) {
   const [productsCat, setProductsCat] = React.useState<Product[]>([]);
   const [category, setCategory] = React.useState<Category | null>(null);
   const [productId, setProductId] = React.useState("");
+  const toast = useToast();
 
   // Inicializar el carrito con los datos de localStorage o un array vacío si no hay datos
   const [cart, setCart] = React.useState<Product[]>(() => {
@@ -87,8 +90,15 @@ export function StoreProvider({ children }: PropsWithChildren) {
   const onSetProductId = (id: string) => setProductId(id);
 
   const onAddToCart = (product: Product) => {
-    const productRepeatedFinded = cart.find((p) => p.id === product.id);
+    toast({
+      status: "success",
+      isClosable: true,
+      position: "top-right",
+      title: "Producto agregado en el carrito.",
+      description: `${product.name} se ha agregado al carrito.`
+    });
 
+    const productRepeatedFinded = cart.find((p) => p.id === product.id);
     if (productRepeatedFinded) {
       setCart(
         cart.map((p) =>
@@ -100,6 +110,10 @@ export function StoreProvider({ children }: PropsWithChildren) {
 
     setCart((prev) => [...prev, product]);
   };
+
+  const onResetCart = () => {
+    setCart([]);
+  }
 
   const onDeleteCart = (product: Product) => {
     setCart((prev) => prev.filter((p) => p.id !== product.id));
@@ -117,6 +131,7 @@ export function StoreProvider({ children }: PropsWithChildren) {
         productsCat,
         productId,
         cart,
+        onResetCart,
         onSetCategory,
         onSetProductId,
         onAddToCart,

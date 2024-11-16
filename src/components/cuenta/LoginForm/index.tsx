@@ -59,8 +59,6 @@ export function LoginForm() {
     }
 
     setIsLoading(false);
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("user", JSON.stringify(response.user));
 
     toast({
       title: `Login exitoso`,

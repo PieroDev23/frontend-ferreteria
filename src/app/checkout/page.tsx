@@ -3,8 +3,6 @@ import { Box, Card, Flex, Heading } from "@chakra-ui/react";
 
 
 
-
-
 export default function CheckoutPage() {
   return (
     <Box py={10}>

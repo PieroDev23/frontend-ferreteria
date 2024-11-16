@@ -11,6 +11,7 @@ export class AuthService {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify({ ...payload })
     });
 
@@ -24,10 +25,11 @@ export class AuthService {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify({ ...payload })
     });
 
 
-    return await response.json();
+    return response;
   }
 }

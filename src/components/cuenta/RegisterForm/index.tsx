@@ -56,7 +56,7 @@ export function RegisterForm() {
     if (!response.ok) {
       setError(true)
       setIsLoading(false)
-      setErrorMsg(response.message);
+      setErrorMsg("something went bad");
       return;
     }
 
@@ -67,11 +67,8 @@ export function RegisterForm() {
       position: 'top-right',
       status: "success",
       isClosable: true,
-      description: `Bienvenido usuario: ${response.user.firstname} ${response.user.lastname}`
+      description: `Bienvenido`
     });
-
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("user", JSON.stringify(response.user));
 
     router.push("/tienda");
   };

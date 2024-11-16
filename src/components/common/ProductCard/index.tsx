@@ -7,9 +7,6 @@ import Link from 'next/link';
 import { CartIcon } from '../Icons';
 import { useStore } from '@app/hooks/useStore';
 
-
-
-
 function ProductCard(props: Product) {
   const { image, name, description, totalPrice, categoryId, id, price, discount } = props;
 

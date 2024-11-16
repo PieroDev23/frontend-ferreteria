@@ -1,5 +1,7 @@
 "use client";
 
+import { useStore } from "@app/hooks/useStore";
+import { CheckoutService, Order } from "@app/services/CheckoutService";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -12,8 +14,12 @@ import {
   Select,
   Stack,
   StackProps,
+  useToast,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import React from "react";
 import { useForm } from "react-hook-form";
+
 
 // Common input properties
 export const inputProps: InputProps = {
@@ -23,12 +29,13 @@ export const inputProps: InputProps = {
 
 // Form data type
 type CheckoutFormData = {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   phone: string;
+  city: string;
+  country: string;
   address: string;
-  idDocument: string;
   cardNumber: string;
   cardExpiry: string;
   cardCvv: string;
@@ -36,40 +43,81 @@ type CheckoutFormData = {
 
 // CheckoutForm component
 export function CheckoutForm(props: StackProps) {
+
+  const [isLoading, setIsloading] = React.useState(false);
+
+  const router = useRouter();
+  const toast = useToast()
+
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CheckoutFormData>();
 
+  const { cart, onResetCart } = useStore();
+
   // Submit handler
-  function onSubmit(data: CheckoutFormData) {
-    console.log("Form data:", data);
-    alert("Form submitted successfully");
+  async function onSubmit(data: CheckoutFormData) {
+    setIsloading(true);
+
+    const { cardCvv, cardExpiry, cardNumber, ...checkout } = data;
+    console.log(cardCvv, cardExpiry, cardNumber);
+    const totalPucharse = Number(cart.reduce((prev, curr) => prev + curr.totalPrice, 0).toFixed(2));
+    const payload: Order = {
+      userId: null,
+      ...checkout,
+      totalAmount: totalPucharse,
+      items: cart.map(product => ({
+        productId: product.id,
+        quantity: product.quantity,
+        categoryId: product.categoryId,
+        price: product.price,
+      }))
+    };
+
+    const response = await CheckoutService.createOrder(payload);
+
+    if (!response) {
+      setIsloading(false);
+      toast({
+        title: "Error al procesar la orden, vuelvalo a intentar",
+        description: "Ocurrió un error al procesar la orden",
+        status: "error",
+      });
+      return;
+    }
+
+    const { order } = response;
+    router.push(`/order/${order.id}`);
+    localStorage.removeItem("cart");
+    onResetCart();
+    setIsloading(false);
   }
 
   return (
     <Stack as="form" {...props} spacing={5} onSubmit={handleSubmit(onSubmit)}>
       <Flex gap={5}>
-        <FormControl isInvalid={!!errors.firstName}>
+        <FormControl isInvalid={!!errors.firstname}>
           <FormLabel>Nombre</FormLabel>
           <Input
             type="text"
             {...inputProps}
             placeholder="Ingresa tus nombres"
-            {...register("firstName", { required: "El nombre es requerido" })}
+            {...register("firstname", { required: "El nombre es requerido" })}
           />
-          <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+          <FormErrorMessage>{errors.firstname?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.lastName}>
+        <FormControl isInvalid={!!errors.lastname}>
           <FormLabel>Apellidos</FormLabel>
           <Input
             type="text"
             {...inputProps}
             placeholder="Ingresa tus apellidos"
-            {...register("lastName", { required: "El apellido es requerido" })}
+            {...register("lastname", { required: "El apellido es requerido" })}
           />
-          <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
+          <FormErrorMessage>{errors.lastname?.message}</FormErrorMessage>
         </FormControl>
       </Flex>
 
@@ -117,31 +165,15 @@ export function CheckoutForm(props: StackProps) {
         <FormErrorMessage>{errors.address?.message}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.idDocument}>
-        <FormLabel>Documento de identidad</FormLabel>
-        <Input
-          type="text"
-          {...inputProps}
-          placeholder="Ingresa tu documento de identidad (DNI)"
-          {...register("idDocument", {
-            required: "Documento de identidad es requerido",
-            pattern: {
-              value: /^\d{8}$/,
-              message: "El documento de identidad es inválido",
-            },
-          })}
-        />
-        <FormErrorMessage>{errors.idDocument?.message}</FormErrorMessage>
-      </FormControl>
-
       <FormControl>
         <FormLabel>País o Región</FormLabel>
-        <Input {...inputProps} placeholder="Perú" readOnly />
+        <Input {...inputProps} value={"Perú"} {...register("country")} readOnly />
       </FormControl>
 
+
       <FormControl>
-        <FormLabel>Provincia</FormLabel>
-        <Select defaultValue="LIMA" borderColor="gray" borderRadius="unset">
+        <FormLabel>Ciudad</FormLabel>
+        <Select defaultValue="LIMA" {...register("city")} borderColor="gray" borderRadius="unset">
           <option value="LIMA">Lima</option>
         </Select>
       </FormControl>
@@ -205,6 +237,7 @@ export function CheckoutForm(props: StackProps) {
 
       <Flex justify="flex-end" mt={5}>
         <Button
+          isLoading={isLoading}
           leftIcon={<ArrowForwardIcon />}
           type="submit"
           bgColor="#feeb34"
