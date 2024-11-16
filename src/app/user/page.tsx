@@ -64,6 +64,8 @@ export default async function UserProfilePage() {
         return 'green';
       case 'ENTREGADO':
         return 'blue';
+      case 'RECHAZADO':
+        return 'red';
       case 'RECIBIDO':
         return 'gray';
       default:

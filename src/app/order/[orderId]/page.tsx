@@ -25,6 +25,8 @@ export default async function OrderReviewPage({ params }: { params: { orderId: s
         return 'green';
       case 'ENTREGADO':
         return 'blue';
+      case 'RECHAZADO':
+        return 'red';
       case 'RECIBIDO':
         return 'gray';
       default:
